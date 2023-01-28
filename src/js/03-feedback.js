@@ -7,28 +7,24 @@ if (localStorage.getItem("feedback-form-state") !== null) {
     inputEls.message.value = JSON.parse(localStorage.getItem("feedback-form-state")).message;
 }
 
-inputEls.addEventListener('input', dataEnter);
-inputEls.addEventListener('submit', dataDel);
-
-function dataEnter(event)  {
+inputEls.addEventListener('input', throttle((event) => {
     event.preventDefault();
     const elements = event.currentTarget;
     const dataEls = {
         email: elements.email.value,
         message: elements.message.value
     };
-
     function writeMemory (Els) {
-        console.log(Els);
         localStorage.setItem("feedback-form-state", JSON.stringify(Els));
     }
     writeMemory(dataEls);
-    return dataEls;
-}
-
-function dataDel(event) {
+}), 50000);
+inputEls.addEventListener('submit', (event) => {
     event.preventDefault();
-    console.log(`E-mail: ${dataEnter(event).email}, MessagE:${dataEnter(event).message}`);
+    if (localStorage.getItem("feedback-form-state") !== null) {
+        console.log(`E-mail: ${JSON.parse(localStorage.getItem("feedback-form-state")).email}, MessagE:${JSON.parse(localStorage.getItem("feedback-form-state")).message}`)
+    } else {console.log(`Вы не заполнили поля!`)};
     localStorage.clear();
     inputEls.reset();  
-}
+});
+
