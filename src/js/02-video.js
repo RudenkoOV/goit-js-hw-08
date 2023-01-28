@@ -7,5 +7,5 @@ import throttle from 'lodash.throttle';
     player.on('timeupdate', throttle(function (time) {
         localStorage.setItem("videoplayer-current-time", time.seconds);
         console.log(localStorage.getItem("videoplayer-current-time"));
-    }, [wait=1000]));
+    }, 1000));
 player.setCurrentTime(localStorage.getItem("videoplayer-current-time"));
