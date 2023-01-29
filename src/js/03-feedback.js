@@ -22,7 +22,7 @@ inputEls.addEventListener('input', throttle((event) => {
 inputEls.addEventListener('submit', (event) => {
     event.preventDefault();
     if (localStorage.getItem("feedback-form-state") !== null) {
-        console.log(`E-mail: ${JSON.parse(localStorage.getItem("feedback-form-state")).email}, MessagE:${JSON.parse(localStorage.getItem("feedback-form-state")).message}`)
+        console.log(JSON.parse(localStorage.getItem("feedback-form-state")));
     } else {console.log(`Вы не заполнили поля!`)};
     localStorage.clear();
     inputEls.reset();  

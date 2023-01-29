@@ -8,4 +8,6 @@ import throttle from 'lodash.throttle';
         localStorage.setItem("videoplayer-current-time", time.seconds);
         console.log(localStorage.getItem("videoplayer-current-time"));
     }, 1000));
-player.setCurrentTime(localStorage.getItem("videoplayer-current-time"));
+if ((localStorage.getItem("videoplayer-current-time")) !== null) {
+    player.setCurrentTime(localStorage.getItem("videoplayer-current-time"));
+}
